@@ -1,0 +1,9 @@
+uvicorn
+python-dotenv
+fastapi
+langchain_openai
+bs4
+langchain
+langchain_chroma
+langchain_community
+pypdf
