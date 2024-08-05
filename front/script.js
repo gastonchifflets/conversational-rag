@@ -14,23 +14,25 @@ sender.addEventListener("click", function (e) {
 })
 
 async function sendUserMessage() {
-  const text = input.value
-  input.value = ""
-  input.disabled = true
-  input.style.backgroundColor = "#605f5f"
-  messagesContainer.innerHTML += `<span class="message user-message">${text}</span>`
-  console.log({loader})
-  loader.className = "loader"
-  
-  console.log({loader})
-  const response = await fetch('http://localhost:8000/', {
-    method: "POST",
-    body: JSON.stringify({ input: text }),
-  })
-  const IAresponse = await response.json()
-  messagesContainer.innerHTML += `<span class="message">${IAresponse}</span>`
-  loader.className = ""
-  input.disabled = false
-  input.style.backgroundColor = "#201e1e"
-
+  try {
+    const text = input.value
+    input.value = ""
+    input.disabled = true
+    input.style.backgroundColor = "#605f5f"
+    messagesContainer.innerHTML += `<span class="message user-message">${text}</span>`
+    loader.className = "loader"
+    const response = await fetch('http://localhost:8000/', {
+      method: "POST",
+      body: JSON.stringify({ input: text }),
+    })
+    const IAresponse = await response.json()
+    messagesContainer.innerHTML += `<span class="message">${IAresponse}</span>`
+  } catch (error) {
+    console.log(error)
+    alert("There was an error getting the response. Please contact me at gastonchifflets@gmail.com.")
+  } finally {
+    loader.className = ""
+    input.disabled = false
+    input.style.backgroundColor = "#201e1e"
+  }
 }
