@@ -21,7 +21,7 @@ async function sendUserMessage() {
     input.style.backgroundColor = "#605f5f"
     messagesContainer.innerHTML += `<span class="message user-message">${text}</span>`
     loader.className = "loader"
-    const response = await fetch('http://localhost:8000/', {
+    const response = await fetch('http://3.16.70.184:8501/', {
       method: "POST",
       body: JSON.stringify({ input: text }),
     })
