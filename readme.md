@@ -1,4 +1,4 @@
-Hello, this is my project for the Promtior challengue.
+Hello, this is my project for the Promtior challenge.
 
 To access the documentation you can view it inside of the doc folder.
 
