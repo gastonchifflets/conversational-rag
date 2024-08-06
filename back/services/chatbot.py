@@ -1,3 +1,4 @@
+import os
 import bs4
 from langchain import hub
 from langchain.chains import create_retrieval_chain
@@ -11,6 +12,14 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import TextLoader
 from langchain_community.document_loaders.merge import MergedDataLoader
 from langchain_openai import ChatOpenAI
+from dotenv import load_dotenv, find_dotenv
+
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+dotenv_path = os.path.join(project_root, '.env')
+
+load_dotenv(dotenv_path=dotenv_path)
+
+pdf_path = os.path.join(project_root, 'sources', 'AI-Engineer.pdf')
 
 def makeIaCall(input):
   llm = ChatOpenAI(model="gpt-3.5-turbo")
@@ -18,7 +27,7 @@ def makeIaCall(input):
   # 1. Load, chunk and index the contents of the blog to create a retriever.
   web_loader = WebBaseLoader(["https://www.promtior.ai/","https://www.promtior.ai/service","https://www.promtior.ai/use-cases"])
 
-  pdf_loader = PyPDFLoader("../sources/AI-Engineer.pdf")
+  pdf_loader = PyPDFLoader(pdf_path)
 
   loader_all = MergedDataLoader(loaders=[web_loader, pdf_loader])
   docs = loader_all.load()
