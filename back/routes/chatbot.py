@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Request
-from rag_api.services.chatbot import makeIaCall
+from back.services.chatbot import makeIaCall
 
 
 router = APIRouter()

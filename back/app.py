@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from rag_api.routes import chatbot
+from back.routes import chatbot
 from dotenv import load_dotenv
 
 load_dotenv()
